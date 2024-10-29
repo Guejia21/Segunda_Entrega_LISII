@@ -1,9 +1,7 @@
 package co.edu.unicauca.gui.test;
 
-import co.edu.unicauca.gui.accesoADatos.RepositorioArticuloMemoriaArrayList;
-import co.edu.unicauca.gui.accesoADatos.RepositorioConferenciaMemoriaArrayList;
-import co.edu.unicauca.gui.controladores.ServicioAlmacenamientoArticulos;
-import co.edu.unicauca.gui.controladores.ServicioAlmacenamientoConferencias;
+import co.edu.unicauca.gui.servicios.ArticuloServices;
+import co.edu.unicauca.gui.servicios.ConferenciaServices;
 import co.edu.unicauca.gui.vistas.adminConferencia.VtnPrincipalAdmin;
 import javax.swing.UIManager;
 
@@ -15,22 +13,11 @@ public class Test {
     public static void main(String[] args) {
         
         seleccionarLookAndField();
-                
-        RepositorioConferenciaMemoriaArrayList objRepositorio1=
-                new RepositorioConferenciaMemoriaArrayList();
-        
-        ServicioAlmacenamientoConferencias objServicio1
-                = new   ServicioAlmacenamientoConferencias(objRepositorio1);  
-        
-        
-        RepositorioArticuloMemoriaArrayList objRepositorio2=
-                new RepositorioArticuloMemoriaArrayList();
-        
-        ServicioAlmacenamientoArticulos objServicio2
-                = new ServicioAlmacenamientoArticulos(objRepositorio2);
+        ConferenciaServices objServicioConferencia = new ConferenciaServices();        
+        ArticuloServices objServicioArticulos = new ArticuloServices();
         
         VtnPrincipalAdmin objVtnPrincipal= new VtnPrincipalAdmin();    
-        objVtnPrincipal.asociarServios(objServicio1,objServicio2); 
+        objVtnPrincipal.asociarServicios(objServicioConferencia,objServicioArticulos); 
         
         objVtnPrincipal.setVisible(true);
         

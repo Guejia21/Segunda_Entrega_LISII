@@ -29,6 +29,7 @@ public  class ArticleRestController {
     //El primer servicio recibe un artículo a registrar y retorna el articulo registrado
     @PostMapping("/articles")
 	public ArticleDTO createArticle(@RequestBody ArticleDTO Article) {
+        System.out.println("Article: "+Article.getNombre());
 		ArticleDTO objArticle = articleService.save(Article);
 		return objArticle;
 	}

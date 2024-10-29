@@ -6,17 +6,16 @@ public class Articulo {
     private String autores[];
     private int cantAutores;
     private String revista;
-    private Conferencia conferencia;
+  
     public Articulo() {
     }
 
-    public Articulo(int id, String nombre, String[] autores, int cantAutores, String revista,Conferencia conf) {
-        this.id = id;
+    public Articulo(String nombre, String[] autores, String revista,Conferencia conf) {
+        this.id = 0;
         this.titulo = nombre;
         this.autores = autores;
-        this.cantAutores = cantAutores;
+        this.cantAutores = autores.length;
         this.revista = revista;
-        this.conferencia = conf;
     }
 
     public int getId() {
@@ -57,14 +56,6 @@ public class Articulo {
 
     public void setRevista(String revista) {
         this.revista = revista;
-    }
-
-    public Conferencia getConferencia() {
-        return conferencia;
-    }
-
-    public void setConferencia(Conferencia conferencia) {
-        this.conferencia = conferencia;
     }
     
    

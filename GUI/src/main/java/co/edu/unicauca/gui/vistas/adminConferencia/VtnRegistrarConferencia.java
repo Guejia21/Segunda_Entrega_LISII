@@ -1,20 +1,34 @@
 package co.edu.unicauca.gui.vistas.adminConferencia;
 
-import co.edu.unicauca.gui.controladores.ServicioAlmacenamientoConferencias;
 import co.edu.unicauca.gui.modelos.Conferencia;
+import co.edu.unicauca.gui.servicios.ConferenciaServices;
 import co.edu.unicauca.gui.utilidades.Utilidades;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 
 public class VtnRegistrarConferencia extends javax.swing.JFrame {
 
-    private ServicioAlmacenamientoConferencias objServicioAlmacenamiento;
+    private ConferenciaServices objServicioAlmacenamiento;
+    private List<JTextComponent> campos;
     
-    public VtnRegistrarConferencia(ServicioAlmacenamientoConferencias objServicioAlmacenamiento) {
+    public VtnRegistrarConferencia(ConferenciaServices objServicioAlmacenamiento) {
         initComponents();
         this.objServicioAlmacenamiento=objServicioAlmacenamiento;
+        this.campos = new ArrayList<>();
+        cargarCampos();
+    }
+     private void cargarCampos() {
+        campos.add(jTextFieldNombre);
+        campos.add(jTextFieldFechaInicio);
+        campos.add(jTextFieldFechaFin);
+        campos.add(jTextFieldCosto);
+        campos.add(jTextFieldCantArticulos);
     }
 
     /**
@@ -39,6 +53,8 @@ public class VtnRegistrarConferencia extends javax.swing.JFrame {
         jTextFieldFechaInicio = new javax.swing.JTextField();
         jTextFieldFechaFin = new javax.swing.JTextField();
         jTextFieldCosto = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldCantArticulos = new javax.swing.JTextField();
 
         jPanelSuperior.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -100,50 +116,76 @@ public class VtnRegistrarConferencia extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Cantidad max articulos:");
+
         javax.swing.GroupLayout jPanelCentralLayout = new javax.swing.GroupLayout(jPanelCentral);
         jPanelCentral.setLayout(jPanelCentralLayout);
         jPanelCentralLayout.setHorizontalGroup(
             jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCentralLayout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelCosto)
-                    .addComponent(jLabelFechaFin)
-                    .addComponent(jLabelFechaInicio)
-                    .addComponent(jLabelNombre))
-                .addGap(70, 70, 70)
-                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextFieldNombre)
-                        .addComponent(jTextFieldFechaInicio)
-                        .addComponent(jTextFieldCosto, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
-                    .addComponent(jTextFieldFechaFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(163, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCentralLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonRegistrar)
                 .addGap(31, 31, 31))
+            .addGroup(jPanelCentralLayout.createSequentialGroup()
+                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCentralLayout.createSequentialGroup()
+                        .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelCentralLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelFechaFin))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCentralLayout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabelCosto)))
+                        .addGap(52, 52, 52))
+                    .addGroup(jPanelCentralLayout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelCentralLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabelNombre))
+                            .addComponent(jLabelFechaInicio))
+                        .addGap(44, 44, 44))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCentralLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(10, 10, 10)))
+                .addGap(21, 21, 21)
+                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldCantArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldFechaInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                        .addComponent(jTextFieldFechaFin, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTextFieldCosto, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPanelCentralLayout.setVerticalGroup(
             jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCentralLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(17, 17, 17)
+                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNombre)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelFechaInicio)
                     .addComponent(jTextFieldFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(18, 18, 18)
                 .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelFechaFin)
-                    .addComponent(jTextFieldFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCosto)
-                    .addComponent(jTextFieldCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                    .addComponent(jTextFieldFechaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelFechaFin))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldCosto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCosto))
+                .addGroup(jPanelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCentralLayout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanelCentralLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldCantArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jButtonRegistrar)
                 .addGap(25, 25, 25))
         );
@@ -155,31 +197,35 @@ public class VtnRegistrarConferencia extends javax.swing.JFrame {
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         
-        String nombre, fechaInicio, fechaFin, costo;
+        String nombre, fechaInicio, fechaFin, costo, numArticulos;
         Date fechaInicioDate = null, fechaFinDate = null;
         float costoInscripcion;
+        int cantidadMaxArticulos;
         boolean bandera;
         
         nombre=this.jTextFieldNombre.getText();
         fechaInicio=this.jTextFieldFechaInicio.getText();
         fechaFin=this.jTextFieldFechaFin.getText();
         costo=this.jTextFieldCosto.getText();
+        numArticulos=this.jTextFieldCantArticulos.getText();
         
+        if(!Utilidades.validarCampos(campos)){
+            Utilidades.mensajeError( "Por favor, llene todos los campos","Registro fallido");
+            return;
+        }
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         try {
-                fechaInicioDate=formatter.parse(fechaInicio);
-            
-            
+                fechaInicioDate=formatter.parse(fechaInicio);                        
             try {
-                fechaFinDate=formatter.parse(fechaFin);
-                
+                fechaFinDate=formatter.parse(fechaFin);                
                 costoInscripcion=Float.parseFloat(costo);
+                cantidadMaxArticulos = Integer.parseInt(numArticulos);
         
-                Conferencia objConferencia= new Conferencia(nombre, fechaInicioDate, fechaFinDate, costoInscripcion);
+                Conferencia objConferencia= new Conferencia(nombre, fechaInicioDate, fechaFinDate, costoInscripcion,cantidadMaxArticulos);
 
 
-                bandera=this.objServicioAlmacenamiento.almacenarConferencia(objConferencia);
-
+                Conferencia nuevaConf = this.objServicioAlmacenamiento.almacenarConferencia(objConferencia);
+                bandera = nuevaConf != null;                
                 if(bandera)
                     Utilidades.mensajeExito( "El registro de la conferencia fue exitoso","Registro exitoso");
                 else
@@ -203,6 +249,7 @@ public class VtnRegistrarConferencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRegistrar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCosto;
     private javax.swing.JLabel jLabelFechaFin;
     private javax.swing.JLabel jLabelFechaInicio;
@@ -211,9 +258,11 @@ public class VtnRegistrarConferencia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelCentral;
     private javax.swing.JPanel jPanelInferior;
     private javax.swing.JPanel jPanelSuperior;
+    private javax.swing.JTextField jTextFieldCantArticulos;
     private javax.swing.JTextField jTextFieldCosto;
     private javax.swing.JTextField jTextFieldFechaFin;
     private javax.swing.JTextField jTextFieldFechaInicio;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
+   
 }

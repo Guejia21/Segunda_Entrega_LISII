@@ -1,57 +1,69 @@
 package co.edu.unicauca.gui.vistas.adminConferencia;
 
-
-import co.edu.unicauca.gui.controladores.ServicioAlmacenamientoConferencias;
+import co.edu.unicauca.gui.infraestructura.Observer;
+import co.edu.unicauca.gui.servicios.ConferenciaServices;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import co.edu.unicauca.gui.modelos.Conferencia;
-import java.util.LinkedList;
 
-public class VtnListarConferencias extends javax.swing.JInternalFrame {
+public class VtnListarConferencias extends javax.swing.JInternalFrame implements Observer {
 
-    private ServicioAlmacenamientoConferencias objServicioAlmacenamiento;
-    
-    public VtnListarConferencias(ServicioAlmacenamientoConferencias objServicioAlmacenamiento) {
+    private ConferenciaServices objServicioAlmacenamiento;
+    private VtnRegistrarConferencia objVtnRegistrarConferencia;
+
+    public VtnListarConferencias(ConferenciaServices objServicioAlmacenamiento) {
         initComponents();
-        this.objServicioAlmacenamiento=objServicioAlmacenamiento;
+        this.objServicioAlmacenamiento = objServicioAlmacenamiento;
+        this.objVtnRegistrarConferencia = new VtnRegistrarConferencia(this.objServicioAlmacenamiento);
+        objVtnRegistrarConferencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         iniciarlizarTabla();
+
     }
 
-    private void iniciarlizarTabla()
-    {
-       DefaultTableModel model= new DefaultTableModel();       
-       model.addColumn("Nombre");       
-       model.addColumn("Fecha de inicio");
-       model.addColumn("Fecha de fin");
-       model.addColumn("Costo");
-       this.jTableListadoConferencias.setModel(model);
+    private void iniciarlizarTabla() {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Nombre");
+        model.addColumn("Fecha de inicio");
+        model.addColumn("Fecha de fin");
+        model.addColumn("Costo");
+        model.addColumn("Num  Max Articulos");
+        this.jTableListadoConferencias.setModel(model);
     }
-    
-    public void limpiarTabla(){
-        
-        DefaultTableModel modelo=(DefaultTableModel) this.jTableListadoConferencias.getModel();
-        int filas=this.jTableListadoConferencias.getRowCount();
-        for (int i = 0;filas>i; i++) {
+
+    public void limpiarTabla() {
+
+        DefaultTableModel modelo = (DefaultTableModel) this.jTableListadoConferencias.getModel();
+        int filas = this.jTableListadoConferencias.getRowCount();
+        for (int i = 0; filas > i; i++) {
             modelo.removeRow(0);
-        }        
+        }
     }
-    
-    private void llenarTabla()
-    {
-        DefaultTableModel model=(DefaultTableModel) this.jTableListadoConferencias.getModel();
+
+    private void llenarTabla() {
+        DefaultTableModel model = (DefaultTableModel) this.jTableListadoConferencias.getModel();
         limpiarTabla();
-        ArrayList<Conferencia> listaConferencias= (ArrayList<Conferencia>) this.objServicioAlmacenamiento.listarConferencias();
+        ArrayList<Conferencia> listaConferencias = (ArrayList<Conferencia>) this.objServicioAlmacenamiento.listarConferencias();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-       
+
         for (int i = 0; i < listaConferencias.size(); i++) {
-            String [] fila= { listaConferencias.get(i).getNombre(), formatter.format(listaConferencias.get(i).getFechaInicio()),formatter.format(listaConferencias.get(i).getFechaFin()),listaConferencias.get(i).getCostoInscripcion()+""};
+            String[] fila = {
+                listaConferencias.get(i).getNombre(), 
+                formatter.format(listaConferencias.get(i).getFechaInicio()), 
+                formatter.format(listaConferencias.get(i).getFechaFin()), 
+                listaConferencias.get(i).getCostoInscripcion() + "", 
+                listaConferencias.get(i).getCantidadMaxArticulos() + ""};
             model.addRow(fila);
         }
-        
+
     }
-    
+
+    @Override
+    public void update(Object o) {
+        llenarTabla();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -174,13 +186,10 @@ public class VtnListarConferencias extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-       llenarTabla();
+        llenarTabla();
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        VtnRegistrarConferencia objVtnRegistrarConferencia= 
-                new VtnRegistrarConferencia(this.objServicioAlmacenamiento);
-        objVtnRegistrarConferencia.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objVtnRegistrarConferencia.setVisible(true);
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
@@ -195,4 +204,5 @@ public class VtnListarConferencias extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableListadoConferencias;
     // End of variables declaration//GEN-END:variables
+
 }

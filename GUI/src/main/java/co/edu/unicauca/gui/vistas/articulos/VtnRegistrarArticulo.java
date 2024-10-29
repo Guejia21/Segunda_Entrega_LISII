@@ -4,39 +4,34 @@
  */
 package co.edu.unicauca.gui.vistas.articulos;
 
-import co.edu.unicauca.gui.controladores.ServicioAlmacenamientoArticulos;
-import co.edu.unicauca.gui.controladores.ServicioAlmacenamientoConferencias;
+
+import co.edu.unicauca.gui.servicios.ArticuloServices;
+import co.edu.unicauca.gui.servicios.ConferenciaServices;
 import co.edu.unicauca.gui.modelos.Articulo;
-import co.edu.unicauca.gui.modelos.Conferencia;
 import co.edu.unicauca.gui.utilidades.Utilidades;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.List;
+import javax.swing.text.JTextComponent;
 
 /**
  *
  * @author HSVSTT2
  */
-public class VtnRegistrarArticulo extends javax.swing.JFrame {
+public final class VtnRegistrarArticulo extends javax.swing.JFrame {
 
-    private ServicioAlmacenamientoArticulos objServicio1;
-    private ServicioAlmacenamientoConferencias objServicio2;
+    private ArticuloServices objServicio1;
+    private List<JTextComponent> campos;
     
-    public VtnRegistrarArticulo(
-            ServicioAlmacenamientoArticulos objServicio1,
-            ServicioAlmacenamientoConferencias objServicio2) {
+    public VtnRegistrarArticulo(ArticuloServices objServicio1,ConferenciaServices objServicio2) {
         initComponents();
-        this.objServicio1=objServicio1;
-        this.objServicio2=objServicio2;
-        cargarConferencias();
+        this.objServicio1=objServicio1;        
+        this.campos = new ArrayList<>();
+        cargarCampos();
     }
-    
-    public void cargarConferencias()
-    {
-        
-        ArrayList<Conferencia> conferencias= (ArrayList<Conferencia>) this.objServicio2.listarConferencias();
-         for (int i = 0; i < conferencias.size(); i++) {
-            this.jComboBoxConferencia.addItem(conferencias.get(i));
-        }
+    private void cargarCampos() {
+        campos.add(jTextFieldTitulo);
+        campos.add(jTextFieldRevista);
+        campos.add(jTextFieldTitulo);       
     }
 
     /**
@@ -58,8 +53,8 @@ public class VtnRegistrarArticulo extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaAutores = new javax.swing.JTextArea();
         jButtonRegistrar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBoxConferencia = new javax.swing.JComboBox<>();
+        jLabelRevista = new javax.swing.JLabel();
+        jTextFieldRevista = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +69,7 @@ public class VtnRegistrarArticulo extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(231, 231, 231)
                 .addComponent(jLabel3)
-                .addContainerGap(258, Short.MAX_VALUE))
+                .addContainerGap(294, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +87,7 @@ public class VtnRegistrarArticulo extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 578, Short.MAX_VALUE)
+            .addGap(0, 639, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,46 +113,51 @@ public class VtnRegistrarArticulo extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Conferencia:");
+        jLabelRevista.setText("Revista:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)))
+                .addGap(130, 130, 130)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelRevista))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBoxConferencia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldRevista)
                     .addComponent(jScrollPane1)
                     .addComponent(jTextFieldTitulo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonRegistrar)
                 .addGap(32, 32, 32))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(4, 4, 4)
-                        .addComponent(jButtonRegistrar))
-                    .addComponent(jComboBoxConferencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(jLabelRevista)
+                        .addGap(53, 53, 53))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldRevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)))
+                .addComponent(jButtonRegistrar)
                 .addContainerGap())
         );
 
@@ -167,20 +167,22 @@ public class VtnRegistrarArticulo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        String titulo, autores;
-        Conferencia objConferencia;
+        String titulo, autores,revista;
         boolean bandera;
         
         titulo=this.jTextFieldTitulo.getText();
         autores=this.jTextAreaAutores.getText();
-        objConferencia=(Conferencia) this.jComboBoxConferencia.getSelectedItem();
+        revista = this.jTextFieldRevista.getText();       
         
         Articulo objArticulo= new Articulo();
         objArticulo.setTitulo(titulo);
-        objArticulo.setAutores(autores);
-        objArticulo.setObjConferencia(objConferencia);
+        String autoresConvertidos[] = autores.split("\\r?\\n");
+        objArticulo.setAutores(autoresConvertidos); //Se deberia ingresar cada autor por linea en el jtextarea
+        objArticulo.setRevista(revista);        
         
-        bandera=this.objServicio1.almacenarArticulo(objArticulo);
+        System.out.println("Articulo a guardar: "+objArticulo.getTitulo());
+        Articulo nuevoArticulo = this.objServicio1.almacenarArticulo(objArticulo);
+        bandera = nuevoArticulo != null;
         
         if(bandera==true)
         {
@@ -196,16 +198,18 @@ public class VtnRegistrarArticulo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRegistrar;
-    private javax.swing.JComboBox<Conferencia> jComboBoxConferencia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelRevista;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaAutores;
+    private javax.swing.JTextField jTextFieldRevista;
     private javax.swing.JTextField jTextFieldTitulo;
     // End of variables declaration//GEN-END:variables
+
+    
 }

@@ -2,7 +2,8 @@ package co.edu.unicauca.gui.utilidades;
 
 
 import javax.swing.JOptionPane;
-import co.edu.unicauca.gui.utilidades.CargarImagenes;
+import java.util.List;
+import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -52,6 +53,17 @@ public class Utilidades {
      */
     public static int mensajeConfirmacion(String mns, String titulo) {        
         return JOptionPane.showConfirmDialog(null, mns, titulo, JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    }
+    /**
+     * Valida los campos de entrada
+     * @param campos Inputs
+     * @return false si algún campo está vacio, true en caso contrario
+     */
+    public static boolean validarCampos(List<JTextComponent> campos){
+        for(JTextComponent campo : campos){
+            if(campo.getText().isBlank()) return false;          
+        }
+        return true;
     }
 
 }

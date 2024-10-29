@@ -1,29 +1,31 @@
 package co.edu.unicauca.gui.vistas.articulos;
 
-import co.edu.unicauca.gui.controladores.ServicioAlmacenamientoArticulos;
-import co.edu.unicauca.gui.controladores.ServicioAlmacenamientoConferencias;
+import co.edu.unicauca.gui.infraestructura.Observer;
+import co.edu.unicauca.gui.servicios.ArticuloServices;
+import co.edu.unicauca.gui.servicios.ConferenciaServices;
 import co.edu.unicauca.gui.modelos.Articulo;
-import co.edu.unicauca.gui.modelos.Conferencia;
 import co.edu.unicauca.gui.utilidades.Utilidades;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
-public class VtnListarArticulos extends javax.swing.JInternalFrame {
+public class VtnListarArticulos extends javax.swing.JInternalFrame implements Observer {
 
-    public ServicioAlmacenamientoArticulos objServicio;
-    public ServicioAlmacenamientoConferencias objServicio2;
-    
-    public VtnListarArticulos(
-            ServicioAlmacenamientoArticulos objServicio,
-            ServicioAlmacenamientoConferencias objServicio2) {
+    private final ArticuloServices objServicioArticulos;
+    private final ConferenciaServices objServicioConferencias;
+    private final VtnRegistrarArticulo objVtnRegistrarArticulo;
+    private final VtnActualizarArticulo objVtnActualizarArticulo;
+            
+    public VtnListarArticulos(ArticuloServices objServicioArt, ConferenciaServices objServicioConf) {
         initComponents();
-        this.objServicio=objServicio;
-        this.objServicio2=objServicio2;
+        this.objServicioArticulos=objServicioArt;
+        this.objServicioConferencias=objServicioConf;
         this.jTableListarArticulos.setDefaultRenderer(Object.class, new Render());
+        objVtnRegistrarArticulo=new VtnRegistrarArticulo(this.objServicioArticulos, this.objServicioConferencias);        
+        objVtnRegistrarArticulo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);       
+        objVtnActualizarArticulo= new VtnActualizarArticulo(this.objServicioArticulos, this.objServicioConferencias);
+        objVtnActualizarArticulo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         inicializarTabla();
     }
 
@@ -33,7 +35,8 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame {
        model.addColumn("Id");       
        model.addColumn("Titulo");
        model.addColumn("Autores");
-       model.addColumn("Conferencia");
+       model.addColumn("Num Autores");
+       model.addColumn("Revista");     
        model.addColumn("Eliminar");
        model.addColumn("Actualizar");       
        this.jTableListarArticulos.setModel(model);
@@ -53,7 +56,7 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame {
         DefaultTableModel model=(DefaultTableModel) this.jTableListarArticulos.getModel();
         limpiarTabla();
         ArrayList<Articulo> listaArticulos
-                = (ArrayList<Articulo>) this.objServicio.listarArticulos();
+                = (ArrayList<Articulo>) this.objServicioArticulos.listarArticulos();
         
         JButton JButtonEliminarArticulo = new JButton();
             JButtonEliminarArticulo.setName("Eliminar");
@@ -66,15 +69,20 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame {
             
         for (int i = 0; i < listaArticulos.size(); i++) {
             Object [] fila= { 
-                listaArticulos.get(i).getIdArticulo(),
+                listaArticulos.get(i).getId(),
                 listaArticulos.get(i).getTitulo(),
                 listaArticulos.get(i).getAutores(),
-                listaArticulos.get(i).getObjConferencia().getNombre(),
+                listaArticulos.get(i).getCantAutores(),
+                listaArticulos.get(i).getRevista(),
                 JButtonEliminarArticulo,
                 JButtonActualizarArticulo};
             model.addRow(fila);
         }
         
+    }
+    @Override
+    public void update(Object o) {
+        llenarTabla();
     }
    
     @SuppressWarnings("unchecked")
@@ -203,8 +211,6 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonActalizarActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        VtnRegistrarArticulo objVtnRegistrarArticulo=new VtnRegistrarArticulo(objServicio, objServicio2);
-        objVtnRegistrarArticulo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         objVtnRegistrarArticulo.setVisible(true);
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
@@ -227,7 +233,7 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame {
                     try{  
                         if(Utilidades.mensajeConfirmacion("¿ Estás seguro de que quieres eliminar el artículo con identificador " + idArticulo + " " 
                             +" ?", "Confirmación") == 0){
-                           boolean bandera=this.objServicio.eliminarArticulo(idArticuloConvertido);
+                           boolean bandera=this.objServicioArticulos.eliminarArticulo(idArticuloConvertido);
                            if(bandera==true)
                            {
                                Utilidades.mensajeExito("El articulo con identificador " + idArticuloConvertido + " fue eliminado exitosamente", "Articulo eliminado");
@@ -244,9 +250,6 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame {
                     }  
                 }
                 else if(boton.getName().equals("Actualizar")){
-                    VtnActualizarArticulo objVtnActualizarArticulo= 
-                            new VtnActualizarArticulo(objServicio, objServicio2);
-                    objVtnActualizarArticulo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     objVtnActualizarArticulo.cargarDatos(idArticuloConvertido);
                     objVtnActualizarArticulo.setVisible(true);
                             
@@ -268,4 +271,6 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableListarArticulos;
     // End of variables declaration//GEN-END:variables
+
+    
 }

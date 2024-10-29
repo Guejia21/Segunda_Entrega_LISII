@@ -10,17 +10,19 @@ public class Conferencia {
     private Date fechaInicio;
     private Date fechaFin;
     private int cantidadMaxArticulos;
+    private float costoInscripcion;
     private List<Articulo> articulos;
 
     public Conferencia() {
     }
 
-    public Conferencia(int id, String nombre, Date fechaInicio, Date fechaFin, int cantidadMaxArticulos) {
-        this.id = id;
+    public Conferencia(String nombre, Date fechaInicio, Date fechaFin,float costo, int cantidadMaxArticulos) {
+        this.id =0;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.cantidadMaxArticulos = cantidadMaxArticulos;
+        this.costoInscripcion = costo;
         this.articulos = new ArrayList<>();
     }
 
@@ -54,6 +56,14 @@ public class Conferencia {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public float getCostoInscripcion() {
+        return costoInscripcion;
+    }
+
+    public void setCosto(int costo) {
+        this.costoInscripcion = costo;
     }
     
 
