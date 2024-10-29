@@ -15,7 +15,7 @@ public class ConferenceRepository {
     private AtomicInteger idIterator;
     public ConferenceRepository(){
         this.listConferences = new ArrayList<ConferenceEntity>();
-        loadConferences();
+        //loadConferences();
         idIterator = new AtomicInteger(listConferences.size());
     }
     public ArrayList<ConferenceEntity> findAll(){ //Recupera todas las conferencias guardadas
@@ -57,7 +57,7 @@ public class ConferenceRepository {
     public int countArticlesInConference(int id){
         System.out.println("Counting articles in a conference");
         ConferenceEntity conference = findById(id);
-        return conference.getArticles().size();
+        return conference.getArticulos().size();
     }
     //Este metodo encuentra el indice de la conferencia en la lista, puesto que el id no necesariamente
     //es el indice.
@@ -80,7 +80,7 @@ public class ConferenceRepository {
         }
         return newId;
     }
-    private void loadConferences(){
+    /*private void loadConferences(){
         List<ArticleEntity> articles1 = new ArrayList<ArticleEntity>();
         List<ArticleEntity> articles2 = new ArrayList<ArticleEntity>();
         articles1.add(new ArticleEntity(1));   
@@ -96,7 +96,7 @@ public class ConferenceRepository {
         listConferences.add(conf3);
         listConferences.add(conf4);
         listConferences.add(conf5);
-    }
+    }*/
     public boolean delete(Integer id) {
         System.out.println("Deleting a conference");
         boolean bandera=false;
@@ -116,8 +116,8 @@ public class ConferenceRepository {
         System.out.println("Getting conferences by article");
         List<ConferenceEntity> conferences = new ArrayList<ConferenceEntity>();
         for(ConferenceEntity conf : listConferences){
-            if(conf.getArticles()!=null){
-                for(ArticleEntity article : conf.getArticles()){
+            if(conf.getArticulos()!=null){
+                for(ArticleEntity article : conf.getArticulos()){
                     if(article.getId()==idArticle){
                         conferences.add(conf);
                         break;

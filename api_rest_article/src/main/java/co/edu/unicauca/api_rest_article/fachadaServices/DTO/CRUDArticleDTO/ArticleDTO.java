@@ -14,8 +14,7 @@ public class ArticleDTO {
     private String nombre;
     private String autores[];
     private int cantAutores;
-    private String revista;
-    private List<ConferenceDTO> conferences;
+    private String revista;    
     public ArticleDTO(){
             
     }

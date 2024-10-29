@@ -15,7 +15,7 @@ public class ArticleRepository {
 
     public ArticleRepository(){
         this.listArticles = new ArrayList<ArticleEntity>();
-        loadArticles();
+        //loadArticles();
         idIterator = new AtomicInteger(listArticles.size());
     }
     public List<ArticleEntity> findAll(){ //Recupera todos los articulos guardados
@@ -40,6 +40,7 @@ public class ArticleRepository {
         if(listArticles.add(art)){
             article = art;
         }
+        System.out.println("Article saved: "+ article.getNombre());
         return article;
 
     }
@@ -90,12 +91,12 @@ public class ArticleRepository {
         if(art != null) return true;
         return false;
     }
-    private void loadArticles() {
+    /*private void loadArticles() {
         this.listArticles.add(new ArticleEntity(
             1,"Palabras Mayores",
             new String[]{"Carlos","Jose Candela"},2,"Nature"));
         this.listArticles.add(new ArticleEntity(
             2,"Palabras Menores",
             new String[]{"Carlos Candela","Temu Jose"},2,"Forbes"));
-    }
+    }*/
 }
