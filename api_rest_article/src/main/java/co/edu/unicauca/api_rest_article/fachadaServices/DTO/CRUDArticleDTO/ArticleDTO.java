@@ -3,7 +3,6 @@ package co.edu.unicauca.api_rest_article.fachadaServices.DTO.CRUDArticleDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import java.util.List;
 
 @Getter
 @Setter
@@ -14,7 +13,6 @@ public class ArticleDTO {
     private String autores;
     private int cantAutores;
     private String revista;
-    private List<ConferenceDTO> conferneces;
     
     public ArticleDTO(){
             

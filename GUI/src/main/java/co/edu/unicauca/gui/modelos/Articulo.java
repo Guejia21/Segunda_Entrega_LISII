@@ -58,7 +58,4 @@ public class Articulo {
     public void setRevista(String revista) {
         this.revista = revista;
     }
-    
-   
-   
 }
