@@ -1,3 +1,6 @@
+/**
+ * Clase Articulo
+ */
 package co.edu.unicauca.gui.modelos;
 
 

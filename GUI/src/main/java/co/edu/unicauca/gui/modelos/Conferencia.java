@@ -1,3 +1,6 @@
+/**
+ * Clase Conferencia
+ */
 package co.edu.unicauca.gui.modelos;
 
 import java.util.ArrayList;

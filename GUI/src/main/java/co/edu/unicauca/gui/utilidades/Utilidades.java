@@ -65,9 +65,13 @@ public class Utilidades {
         }
         return true;
     }
+    /**
+     * Limpia los campos de entrada
+     * @param campos Inputs
+     */
     public static void limpiarCampos(List<JTextComponent> campos){
         for(JTextComponent campo : campos){
-         campo.setText("");
+            campo.setText("");
         }
     }
 

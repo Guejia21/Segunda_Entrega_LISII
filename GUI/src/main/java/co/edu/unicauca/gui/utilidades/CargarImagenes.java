@@ -1,16 +1,17 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * CargarImagenes.java
  */
 package co.edu.unicauca.gui.utilidades;
 
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author LENOVO
- */
+
 public class CargarImagenes {
+    /**
+     * Metodo que se encarga de cargar una imagen
+     * @param ruta Ruta de la imagen que se desea cargar
+     * @return Objeto de tipo ImageIcon
+     */
     public ImageIcon CargarImagen(String ruta)
     {
         ImageIcon imagen= new javax.swing.ImageIcon(getClass().getResource(ruta));  

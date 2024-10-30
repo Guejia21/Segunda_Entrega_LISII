@@ -1,6 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * Clase que se encarga de realizar peticiones al servicio web de Conferencias
  */
 package co.edu.unicauca.gui.servicios;
 
@@ -16,17 +15,19 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.jackson.JacksonFeature;
 
-/**
- *
- * @author david
- */
+
 public class ConferenciaServices extends Subject {
-    private String endPoint; //ruta al servicio web, puerto:8000
-    private Client objClientePeticiones;
+    private String endPoint; /*Ruta al servicio web*/
+    private Client objClientePeticiones; /*Cliente para realizar peticiones al servicio web*/
     public ConferenciaServices(){
         this.endPoint = "http://localhost:8080/api/conferences";
         this.objClientePeticiones = ClientBuilder.newClient().register(new JacksonFeature());
     }
+    /**
+     * Metodo que se encarga de almacenar una conferencia en la base de datos
+     * @param objConferenciaRegistrar Objeto de tipo Conferencia que se desea almacenar
+     * @return Objeto de tipo Conferencia que se almaceno en la base de datos
+     */
     public Conferencia  almacenarConferencia(Conferencia objConferenciaRegistrar){
         Conferencia conf;
         WebTarget target = this.objClientePeticiones.target(this.endPoint);
@@ -36,12 +37,15 @@ public class ConferenciaServices extends Subject {
         notifyAllObserves();
         return conf;
     }
+    /**
+     * Metodo que se encarga de listar todas las conferencias almacenadas en la base de datos
+     * @return Lista de objetos de tipo Conferencia
+     */
     public List<Conferencia> listarConferencias(){
-       List<Conferencia> conferencias;
+        List<Conferencia> conferencias;
         WebTarget target = this.objClientePeticiones.target(this.endPoint+"/list");
         Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON);
         conferencias = objPeticion.get(new GenericType<List<Conferencia>>(){});
         return conferencias;
-    }
-    //TO DO: Eliminar conferencia e implementar notify
+    }    
 }
