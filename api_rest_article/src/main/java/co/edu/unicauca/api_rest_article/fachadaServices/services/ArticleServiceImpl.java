@@ -52,7 +52,7 @@ public class ArticleServiceImpl implements IArticleService{
 		ArticleEntity ArticleEntity = this.modelMapper.map(articulo, ArticleEntity.class);
 		ArticleEntity objArticleEntity = this.servicioAccesoBaseDatos.save(ArticleEntity);
 		ArticleDTO ArticleDTO = this.modelMapper.map(objArticleEntity, ArticleDTO.class);
-		//producer.sendMessage(ArticleDTO);
+		producer.sendMessage(ArticleDTO);
 		return ArticleDTO;
 	}
 
