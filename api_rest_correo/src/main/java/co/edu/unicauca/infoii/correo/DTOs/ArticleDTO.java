@@ -1,4 +1,4 @@
-package co.edu.unicauca.api_rest_article.fachadaServices.DTO.CRUDArticleDTO;
+package co.edu.unicauca.infoii.correo.DTOs;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,8 +12,7 @@ public class ArticleDTO {
     private String nombre;
     private String autores[];
     private int cantAutores;
-    private String revista;    
-    public ArticleDTO(){
-            
-    }
+    private String revista;
+
+    public ArticleDTO(){}
 }

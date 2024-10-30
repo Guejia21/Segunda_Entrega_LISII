@@ -42,7 +42,6 @@ public class ArticleRepository {
         }
         System.out.println("Article saved: "+ article.getNombre());
         return article;
-
     }
     public ArticleEntity update(int id, ArticleEntity newArticle){
         System.out.println("Updating an article");

@@ -18,7 +18,7 @@ public class MessageProducer {
 
     public void sendMessage(ArticleDTO objArticuloCreado) {
         amqpTemplate.convertAndSend(exchange, routingKey, objArticuloCreado);
-        System.out.println("Datos del articulo enviado a la cola");
+        System.out.println("Datos del articulo enviados a la cola");
     }
 }
     
