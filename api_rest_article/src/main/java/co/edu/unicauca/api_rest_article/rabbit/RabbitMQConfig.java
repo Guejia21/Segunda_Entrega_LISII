@@ -1,4 +1,4 @@
-package co.edu.unicauca.distribuidos.core.rabbit;
+package co.edu.unicauca.api_rest_article.rabbit;
 
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;

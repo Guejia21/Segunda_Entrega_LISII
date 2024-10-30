@@ -11,19 +11,19 @@ import java.util.List;
 import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
-
 public class VtnRegistrarConferencia extends javax.swing.JFrame {
 
     private ConferenciaServices objServicioAlmacenamiento;
     private List<JTextComponent> campos;
-    
+
     public VtnRegistrarConferencia(ConferenciaServices objServicioAlmacenamiento) {
         initComponents();
-        this.objServicioAlmacenamiento=objServicioAlmacenamiento;
+        this.objServicioAlmacenamiento = objServicioAlmacenamiento;
         this.campos = new ArrayList<>();
         cargarCampos();
     }
-     private void cargarCampos() {
+
+    private void cargarCampos() {
         campos.add(jTextFieldNombre);
         campos.add(jTextFieldFechaInicio);
         campos.add(jTextFieldFechaFin);
@@ -196,54 +196,48 @@ public class VtnRegistrarConferencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        
+
         String nombre, fechaInicio, fechaFin, costo, numArticulos;
         Date fechaInicioDate = null, fechaFinDate = null;
         float costoInscripcion;
         int cantidadMaxArticulos;
         boolean bandera;
-        
-        nombre=this.jTextFieldNombre.getText();
-        fechaInicio=this.jTextFieldFechaInicio.getText();
-        fechaFin=this.jTextFieldFechaFin.getText();
-        costo=this.jTextFieldCosto.getText();
-        numArticulos=this.jTextFieldCantArticulos.getText();
-        
-        if(!Utilidades.validarCampos(campos)){
-            Utilidades.mensajeError( "Por favor, llene todos los campos","Registro fallido");
+
+        nombre = this.jTextFieldNombre.getText();
+        fechaInicio = this.jTextFieldFechaInicio.getText();
+        fechaFin = this.jTextFieldFechaFin.getText();
+        costo = this.jTextFieldCosto.getText();
+        numArticulos = this.jTextFieldCantArticulos.getText();
+
+        if (!Utilidades.validarCampos(campos)) {
+            Utilidades.mensajeError("Por favor, llene todos los campos", "Registro fallido");
             return;
         }
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         try {
-                fechaInicioDate=formatter.parse(fechaInicio);                        
-            try {
-                fechaFinDate=formatter.parse(fechaFin);                
-                costoInscripcion=Float.parseFloat(costo);
-                cantidadMaxArticulos = Integer.parseInt(numArticulos);
-        
-                Conferencia objConferencia= new Conferencia(nombre, fechaInicioDate, fechaFinDate, costoInscripcion,cantidadMaxArticulos);
-
-
-                Conferencia nuevaConf = this.objServicioAlmacenamiento.almacenarConferencia(objConferencia);
-                bandera = nuevaConf != null;                
-                if(bandera)
-                    Utilidades.mensajeExito( "El registro de la conferencia fue exitoso","Registro exitoso");
-                else
-                    Utilidades.mensajeError( "El registro de la conferencia no se realizo","Error en el registro");
-
-
-            } catch (ParseException ex) {
-                Utilidades.mensajeAdvertencia("La fecha de fin no sigue el formato dd/MM/yyyy","Fecha incorrecta");
-            }
-            
-            
-        } catch (ParseException ex) {
-            Utilidades.mensajeAdvertencia("La fecha de inicio no sigue el formato dd/MM/yyyy","Fecha incorrecta");
+            costoInscripcion = Float.parseFloat(costo);
+            cantidadMaxArticulos = Integer.parseInt(numArticulos);
+        } catch (NumberFormatException e) {
+            Utilidades.mensajeAdvertencia("Campos númericos incorrectos", "Error en campos numericos");
+            return;
         }
-        
-        
-        
-        
+        try {
+            fechaInicioDate = formatter.parse(fechaInicio);
+            fechaFinDate = formatter.parse(fechaFin);
+        } catch (ParseException ex) {
+            Utilidades.mensajeAdvertencia("Las fechas deben seguir el formato dd/MM/yyyy", "Fecha incorrecta");
+            return;
+        }
+        Conferencia objConferencia = new Conferencia(nombre, fechaInicioDate, fechaFinDate, costoInscripcion, cantidadMaxArticulos);
+
+        Conferencia nuevaConf = this.objServicioAlmacenamiento.almacenarConferencia(objConferencia);
+        bandera = nuevaConf != null;
+        if (bandera) {
+            Utilidades.mensajeExito("El registro de la conferencia fue exitoso", "Registro exitoso");
+            Utilidades.limpiarCampos(campos);
+        } else {
+            Utilidades.mensajeError("El registro de la conferencia no se realizo", "Error en el registro");
+        }
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
 
@@ -264,5 +258,5 @@ public class VtnRegistrarConferencia extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldFechaInicio;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
-   
+
 }

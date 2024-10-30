@@ -60,7 +60,6 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
         jPanelMenu = new javax.swing.JPanel();
         jButtonGestionarConferencias = new javax.swing.JButton();
         jButtonVerArticulosEnviados = new javax.swing.JButton();
-        jButtonVerEstadisticas = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
         jPanelInferior = new javax.swing.JPanel();
         jPanelCentral = new javax.swing.JPanel();
@@ -88,13 +87,6 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButtonVerEstadisticas.setText("Ver estadisticas");
-        jButtonVerEstadisticas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonVerEstadisticasActionPerformed(evt);
-            }
-        });
-
         jLabelTitulo.setFont(new java.awt.Font("Cantarell Extra Bold", 1, 15)); // NOI18N
         jLabelTitulo.setText("GESTIÓN DE CONFERENCIAS");
 
@@ -104,15 +96,14 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMenuLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelTitulo)
-                    .addGroup(jPanelMenuLayout.createSequentialGroup()
-                        .addComponent(jButtonGestionarConferencias)
-                        .addGap(45, 45, 45)
-                        .addComponent(jButtonVerArticulosEnviados)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                .addComponent(jButtonVerEstadisticas)
-                .addGap(38, 38, 38))
+                .addComponent(jButtonGestionarConferencias, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addComponent(jButtonVerArticulosEnviados, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMenuLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelTitulo)
+                .addGap(252, 252, 252))
         );
         jPanelMenuLayout.setVerticalGroup(
             jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,8 +113,7 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGestionarConferencias)
-                    .addComponent(jButtonVerArticulosEnviados)
-                    .addComponent(jButtonVerEstadisticas))
+                    .addComponent(jButtonVerArticulosEnviados))
                 .addContainerGap())
         );
 
@@ -136,9 +126,9 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
                 .addComponent(jLabelImagenOrganizacion)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSuperiorLayout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelSuperiorLayout.setVerticalGroup(
             jPanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +148,7 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
         jPanelInferior.setLayout(jPanelInferiorLayout);
         jPanelInferiorLayout.setHorizontalGroup(
             jPanelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 726, Short.MAX_VALUE)
+            .addGap(0, 746, Short.MAX_VALUE)
         );
         jPanelInferiorLayout.setVerticalGroup(
             jPanelInferiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +163,7 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
         jDesktopPanelPrincipal.setLayout(jDesktopPanelPrincipalLayout);
         jDesktopPanelPrincipalLayout.setHorizontalGroup(
             jDesktopPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 714, Short.MAX_VALUE)
+            .addGap(0, 734, Short.MAX_VALUE)
         );
         jDesktopPanelPrincipalLayout.setVerticalGroup(
             jDesktopPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,12 +198,6 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
         this.objVtnListarConferencias.setVisible(false);
     }//GEN-LAST:event_jButtonVerArticulosEnviadosActionPerformed
 
-    private void jButtonVerEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerEstadisticasActionPerformed
-        this.objVtnVerEstadisticas.setVisible(true);
-        this.objVtnListarArticulos.setVisible(false);
-        this.objVtnListarConferencias.setVisible(false);
-    }//GEN-LAST:event_jButtonVerEstadisticasActionPerformed
-
     private void jButtonGestionarConferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGestionarConferenciasActionPerformed
         this.objVtnListarConferencias.setVisible(true);
         this.objVtnVerEstadisticas.setVisible(false);
@@ -225,7 +209,6 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGestionarConferencias;
     private javax.swing.JButton jButtonVerArticulosEnviados;
-    private javax.swing.JButton jButtonVerEstadisticas;
     private javax.swing.JDesktopPane jDesktopPanelPrincipal;
     private javax.swing.JLabel jLabelImagenOrganizacion;
     private javax.swing.JLabel jLabelTitulo;

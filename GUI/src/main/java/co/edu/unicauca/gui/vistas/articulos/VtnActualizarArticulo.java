@@ -10,8 +10,10 @@ import co.edu.unicauca.gui.servicios.ConferenciaServices;
 import co.edu.unicauca.gui.modelos.Articulo;
 import co.edu.unicauca.gui.modelos.Conferencia;
 import co.edu.unicauca.gui.utilidades.Utilidades;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.text.JTextComponent;
 
 /**
@@ -28,11 +30,19 @@ public class VtnActualizarArticulo extends javax.swing.JFrame {
         this.objServicio1=objServicio1;        
         this.campos = new ArrayList<>();
         cargarCampos();
+        establecerIconoAyuda();
     }
     private void cargarCampos() {
         campos.add(jTextFieldTitulo);
         campos.add(jTextFieldRevista);
-        campos.add(jTextFieldTitulo);       
+        campos.add(jTextAreaAutores);       
+    }
+     private void establecerIconoAyuda(){
+        Image img1= new ImageIcon(getClass().getResource("/recursos/info.png")).getImage();
+        ImageIcon img2=new ImageIcon(img1.getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        this.jLabelMensajeAutores.setIcon(img2);
+        this.jLabelMensajeAutores.setToolTipText("Por favor, separe cada autor por comas");
+        this.jLabelMensajeAutores.setText(" ");
     }
      
     public void cargarDatos(int idArticulo)
@@ -69,6 +79,7 @@ public class VtnActualizarArticulo extends javax.swing.JFrame {
         jLabelId = new javax.swing.JLabel();
         jLabelRevista = new javax.swing.JLabel();
         jTextFieldRevista = new javax.swing.JTextField();
+        jLabelMensajeAutores = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,6 +145,8 @@ public class VtnActualizarArticulo extends javax.swing.JFrame {
 
         jLabelRevista.setText("Revista:");
 
+        jLabelMensajeAutores.setText("Icono");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -157,11 +170,14 @@ public class VtnActualizarArticulo extends javax.swing.JFrame {
                         .addGap(42, 42, 42)))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextFieldRevista)))
-                .addContainerGap(139, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldRevista))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelMensajeAutores)))
+                .addContainerGap(92, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButtonActualizar)
@@ -179,12 +195,14 @@ public class VtnActualizarArticulo extends javax.swing.JFrame {
                     .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(jLabelAutores)))
-                .addGap(18, 18, 18)
+                        .addComponent(jLabelAutores))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelMensajeAutores)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(45, 45, 45)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldRevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelRevista))
@@ -199,30 +217,41 @@ public class VtnActualizarArticulo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-        String nombre, autores, id;        
-        boolean bandera;
-        int idArticulo;
-        id=this.jTextFieldId.getText();  
         
-        idArticulo=Integer.parseInt(id);
+        String nombre, autores,revista,id;       
+        int cantAu, idConvertido;
+        boolean bandera;
+        
+        id = this.jTextFieldId.getText();
+        idConvertido = Integer.parseInt(id);
         nombre=this.jTextFieldTitulo.getText();
         autores=this.jTextAreaAutores.getText();
-        
-        
+        revista = this.jTextFieldRevista.getText();       
+        if (!Utilidades.validarCampos(campos)) {
+            Utilidades.mensajeError("Por favor, llene todos los campos", "Registro fallido");
+            return;
+        }
         Articulo objArticulo= new Articulo();
-        objArticulo.setId(idArticulo);
         objArticulo.setNombre(nombre);
-        objArticulo.setAutores(autores.split("\\r?\\n"));
-        Articulo articuloActualizado=this.objServicio1.actualizarArticulo(objArticulo.getId(),objArticulo);
-        bandera = articuloActualizado!=null;
-       if(bandera==true)
-       {
-           Utilidades.mensajeExito("Artículo actualizado exitosamente", "Artículo actualizado");
-       }
-       else
-       {
-           Utilidades.mensajeError("Error al actualizar el artículo", "Error al actualizar");
-       }
+        String autoresConvertidos[] = autores.split(","); //Para extraer la cantidad de autores
+        cantAu = autoresConvertidos.length;
+        objArticulo.setAutores(autores); //Se deberia ingresar cada autor por linea en el jtextarea
+        objArticulo.setRevista(revista); 
+        objArticulo.setCantAutores(cantAu);
+         
+        Articulo nuevoArticulo = this.objServicio1.actualizarArticulo(idConvertido, objArticulo);
+ 
+        bandera = nuevoArticulo != null;
+        
+        if(bandera==true)
+        {
+            Utilidades.mensajeExito("Articulo actualizado", "Actualización exitosa");
+            this.setVisible(false);
+        }
+        else
+        {
+            Utilidades.mensajeError("No se pudo actualizar el articulo","Error al actualizar el articulo");
+        }
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     
@@ -232,6 +261,7 @@ public class VtnActualizarArticulo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelAutores;
     private javax.swing.JLabel jLabelId;
+    private javax.swing.JLabel jLabelMensajeAutores;
     private javax.swing.JLabel jLabelRevista;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanel1;

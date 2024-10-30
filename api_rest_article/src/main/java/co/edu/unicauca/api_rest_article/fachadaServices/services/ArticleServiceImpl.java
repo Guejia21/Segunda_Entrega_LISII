@@ -82,7 +82,8 @@ public class ArticleServiceImpl implements IArticleService{
 	@Override
 	public ArticleWithConferencesDTO getArticleWithConferences(Integer idArticle) {
 		List<ConferenceDTO> conferences = this.servicioAccesoBaseDatosConferencia.getConferencesByArticle(idArticle);
-		ArticleDTO article = this.findById(idArticle);
+		ArticleEntity objArticleEntity = this.servicioAccesoBaseDatos.findById(idArticle);
+		ArticleDTO article = this.modelMapper.map(objArticleEntity, ArticleDTO.class);
 		ArticleWithConferencesDTO articleWithConferences = new ArticleWithConferencesDTO(article, conferences);
 		return articleWithConferences;
 	}

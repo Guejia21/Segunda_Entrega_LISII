@@ -9,8 +9,10 @@ import co.edu.unicauca.gui.servicios.ArticuloServices;
 import co.edu.unicauca.gui.servicios.ConferenciaServices;
 import co.edu.unicauca.gui.modelos.Articulo;
 import co.edu.unicauca.gui.utilidades.Utilidades;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.text.JTextComponent;
 
 /**
@@ -27,11 +29,19 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
         this.objServicio1=objServicio1;        
         this.campos = new ArrayList<>();
         cargarCampos();
+        establecerIconoAyuda();
     }
     private void cargarCampos() {
         campos.add(jTextFieldTitulo);
         campos.add(jTextFieldRevista); 
-        campos.add(jTextFieldTitulo);   
+        campos.add(jTextAreaAutores);   
+    }
+    private void establecerIconoAyuda(){
+        Image img1= new ImageIcon(getClass().getResource("/recursos/info.png")).getImage();
+        ImageIcon img2=new ImageIcon(img1.getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        this.jLabelMensajeAutores.setIcon(img2);
+        this.jLabelMensajeAutores.setToolTipText("Por favor, separe cada autor por comas");
+        this.jLabelMensajeAutores.setText(" ");
     }
 
     /**
@@ -55,8 +65,7 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
         jButtonRegistrar = new javax.swing.JButton();
         jLabelRevista = new javax.swing.JLabel();
         jTextFieldRevista = new javax.swing.JTextField();
-        jLabelCantAutores = new javax.swing.JLabel();
-        jTextFieldCantAutores = new javax.swing.JTextField();
+        jLabelMensajeAutores = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,31 +126,28 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
 
         jLabelRevista.setText("Revista:");
 
-        jLabelCantAutores.setText("Cantidad de autores:");
+        jLabelMensajeAutores.setText("Icono");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(jLabelCantAutores)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldCantAutores, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabelRevista))
-                        .addGap(42, 42, 42)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldRevista)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jTextFieldTitulo))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addGap(130, 130, 130)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelRevista, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(42, 42, 42)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldRevista)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jTextFieldTitulo))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelMensajeAutores)
+                .addContainerGap(80, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonRegistrar)
                 .addGap(32, 32, 32))
         );
@@ -158,21 +164,16 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelMensajeAutores)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCantAutores)
-                    .addComponent(jTextFieldCantAutores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButtonRegistrar)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldRevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelRevista))
-                        .addGap(19, 19, 19))))
+                    .addComponent(jTextFieldRevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelRevista))
+                .addGap(28, 28, 28)
+                .addComponent(jButtonRegistrar)
+                .addGap(36, 36, 36))
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -181,24 +182,25 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        String nombre, autores,revista;
-        String canAutores;
+        String nombre, autores,revista;       
         int cantAu;
         boolean bandera;
         
         nombre=this.jTextFieldTitulo.getText();
         autores=this.jTextAreaAutores.getText();
-        revista = this.jTextFieldRevista.getText();  
-        canAutores = this.jTextFieldCantAutores.getText();
-        cantAu = Integer.parseInt(canAutores);
+        revista = this.jTextFieldRevista.getText();         
+        if (!Utilidades.validarCampos(campos)) {
+            Utilidades.mensajeError("Por favor, llene todos los campos", "Registro fallido");
+            return;
+        }
         Articulo objArticulo= new Articulo();
         objArticulo.setNombre(nombre);
-        String autoresConvertidos[] = autores.split("\\r?\\n");
-        objArticulo.setAutores(autoresConvertidos); //Se deberia ingresar cada autor por linea en el jtextarea
+        String autoresConvertidos[] = autores.split(","); //Para extraer la cantidad de autores
+        cantAu = autoresConvertidos.length;
+        objArticulo.setAutores(autores); //Se deberia ingresar cada autor por linea en el jtextarea
         objArticulo.setRevista(revista); 
         objArticulo.setCantAutores(cantAu);
-         
-        System.out.println("Articulo a guardar: "+objArticulo.getNombre());
+                 
         Articulo nuevoArticulo = this.objServicio1.almacenarArticulo(objArticulo);
  
         bandera = nuevoArticulo != null;
@@ -206,6 +208,7 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
         if(bandera==true)
         {
             Utilidades.mensajeExito("Registro exitoso", "Registro exitoso");
+            Utilidades.limpiarCampos(campos);
         }
         else
         {
@@ -220,14 +223,13 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabelCantAutores;
+    private javax.swing.JLabel jLabelMensajeAutores;
     private javax.swing.JLabel jLabelRevista;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaAutores;
-    private javax.swing.JTextField jTextFieldCantAutores;
     private javax.swing.JTextField jTextFieldRevista;
     private javax.swing.JTextField jTextFieldTitulo;
     // End of variables declaration//GEN-END:variables

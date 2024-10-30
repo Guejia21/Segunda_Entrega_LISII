@@ -10,7 +10,7 @@ import lombok.Setter;
 public class ArticleEntity {
     private int id;
     private String nombre;
-    private String autores[];
+    private String autores;
     private int cantAutores;
     private String revista;
     

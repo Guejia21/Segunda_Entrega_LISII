@@ -76,4 +76,5 @@ public class ConferenceRestController {
         return conferenceService.getConferencesByArticle(idArticle);
     }
     
+    
 }

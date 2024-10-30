@@ -65,5 +65,10 @@ public class Utilidades {
         }
         return true;
     }
+    public static void limpiarCampos(List<JTextComponent> campos){
+        for(JTextComponent campo : campos){
+         campo.setText("");
+        }
+    }
 
 }

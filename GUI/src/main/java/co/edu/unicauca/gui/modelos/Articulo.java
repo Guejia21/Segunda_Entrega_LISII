@@ -4,18 +4,18 @@ package co.edu.unicauca.gui.modelos;
 public class Articulo {
     private int id;
     private String nombre;
-    private String autores[];
+    private String autores;
     private int cantAutores;
     private String revista;
   
     public Articulo() {
     }
 
-    public Articulo(String nombre, String[] autores, String revista,Conferencia conf) {
+    public Articulo(String nombre, String autores, String revista,Conferencia conf) {
         this.id = 0;
         this.nombre = nombre;
         this.autores = autores;
-        this.cantAutores = autores.length;
+        this.cantAutores = autores.split(",").length;
         this.revista = revista;
     }
 
@@ -35,11 +35,11 @@ public class Articulo {
         this.nombre = nombre;
     }
 
-    public String[] getAutores() {
+    public String getAutores() {
         return autores;
     }
 
-    public void setAutores(String[] autores) {
+    public void setAutores(String autores) {
         this.autores = autores;
     }
 

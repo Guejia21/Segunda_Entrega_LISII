@@ -9,7 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ArticleEntity {
     private int id;
-    
+
     public ArticleEntity(){
             
     }

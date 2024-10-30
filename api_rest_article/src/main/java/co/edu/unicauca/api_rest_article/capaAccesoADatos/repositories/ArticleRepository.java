@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import co.edu.unicauca.api_rest_article.capaAccesoADatos.models.ArticleEntity;
 
+
 @Repository
 public class ArticleRepository {
     private ArrayList<ArticleEntity> listArticles; //Aqui se almacenaran los articulos
@@ -15,7 +16,7 @@ public class ArticleRepository {
 
     public ArticleRepository(){
         this.listArticles = new ArrayList<ArticleEntity>();
-        //loadArticles();
+        loadArticles();
         idIterator = new AtomicInteger(listArticles.size());
     }
     public List<ArticleEntity> findAll(){ //Recupera todos los articulos guardados
@@ -41,6 +42,7 @@ public class ArticleRepository {
             article = art;
         }
         System.out.println("Article saved: "+ article.getNombre());
+        System.out.println("Prueba de como llegan los autores: " + article.getAutores());
         return article;
     }
     public ArticleEntity update(int id, ArticleEntity newArticle){
@@ -90,12 +92,13 @@ public class ArticleRepository {
         if(art != null) return true;
         return false;
     }
-    /*private void loadArticles() {
-        this.listArticles.add(new ArticleEntity(
-            1,"Palabras Mayores",
-            new String[]{"Carlos","Jose Candela"},2,"Nature"));
-        this.listArticles.add(new ArticleEntity(
-            2,"Palabras Menores",
-            new String[]{"Carlos Candela","Temu Jose"},2,"Forbes"));
-    }*/
+    
+    private void loadArticles() {
+        ArticleEntity a1 = new ArticleEntity(10, "articulo1", "David Chacon, Jonathan Guejia", 2, "revista1");
+        ArticleEntity a2 = new ArticleEntity(11, "articulo2", "Jorge Martinez", 1, "revista2");
+        ArticleEntity a3 = new ArticleEntity(12, "articulo3", "Jonathan Guejia", 1, "revista3");
+        this.listArticles.add(a1);
+        this.listArticles.add(a2);
+        this.listArticles.add(a3);
+    }
 }

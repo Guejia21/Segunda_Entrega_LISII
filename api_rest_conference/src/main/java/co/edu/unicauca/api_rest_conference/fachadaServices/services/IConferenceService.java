@@ -3,7 +3,6 @@ package co.edu.unicauca.api_rest_conference.fachadaServices.services;
 import java.util.List;
 
 import co.edu.unicauca.api_rest_conference.fachadaServices.DTO.ConferenceDTO;
-
 public interface IConferenceService {
     public List<ConferenceDTO> findAll();
 
@@ -20,4 +19,5 @@ public interface IConferenceService {
     public boolean exists(int id);
 
 	public List<ConferenceDTO> getConferencesByArticle(int idArticle);
+
 }

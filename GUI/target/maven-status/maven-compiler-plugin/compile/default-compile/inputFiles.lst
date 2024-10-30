@@ -1,17 +1,17 @@
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\modelos\Articulo.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\servicios\ConferenciaServices.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\vistas\articulos\Render.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\vistas\articulos\VtnRegistrarArticulo.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\vistas\adminConferencia\VtnRegistrarConferencia.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\infraestructura\Observer.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\modelos\Conferencia.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\vistas\articulos\VtnActualizarArticulo.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\servicios\ArticuloServices.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\vistas\adminConferencia\VtnPrincipalAdmin.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\utilidades\CargarImagenes.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\vistas\adminConferencia\VtnListarConferencias.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\utilidades\Utilidades.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\vistas\articulos\VtnListarArticulos.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\infraestructura\Subject.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\test\Test.java
-C:\Users\David\Desktop\LabParcial2\Segunda_Entrega_LISII\GUI\src\main\java\co\edu\unicauca\gui\vistas\adminConferencia\VtnVerEstadisticas.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/modelos/Conferencia.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/test/Test.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/vistas/adminConferencia/VtnListarConferencias.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/vistas/articulos/VtnActualizarArticulo.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/servicios/ConferenciaServices.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/vistas/articulos/Render.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/infraestructura/Observer.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/infraestructura/Subject.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/vistas/adminConferencia/VtnPrincipalAdmin.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/utilidades/Utilidades.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/vistas/adminConferencia/VtnVerEstadisticas.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/servicios/ArticuloServices.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/utilidades/CargarImagenes.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/vistas/adminConferencia/VtnRegistrarConferencia.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/vistas/articulos/VtnRegistrarArticulo.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/modelos/Articulo.java
+/mnt/Datos/Docs_U/Semestre 6/Lab Software II/Segunda_Entrega/GUI/src/main/java/co/edu/unicauca/gui/vistas/articulos/VtnListarArticulos.java
