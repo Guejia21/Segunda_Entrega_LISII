@@ -2,7 +2,7 @@ Elaborado por:
 
 - Jonathan David Guejia <jonathanguejia@unicauca.edu.co>
 - Jhoan David Chacón <jhoanchacon@unicauca.edu.co>
-- URL del video: URL
+- URL del video: https://youtu.be/EhIJ63xsxwc
 - Puerto Microservicio Articulos: 8000
 - Puerto Microservicio Conferencias: 8080
 
