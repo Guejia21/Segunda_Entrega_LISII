@@ -34,13 +34,13 @@ public class VtnActualizarArticulo extends javax.swing.JFrame {
         campos.add(jTextFieldRevista);
         campos.add(jTextFieldTitulo);       
     }
-    
+     
     public void cargarDatos(int idArticulo)
     {
         Articulo objArticulo=this.objServicio1.consultarArticulo(idArticulo);
         this.jTextFieldId.setText(objArticulo.getId()+"");
         this.jTextFieldId.setEnabled(false);
-        this.jTextFieldTitulo.setText(objArticulo.getTitulo());
+        this.jTextFieldTitulo.setText(objArticulo.getNombre());
         this.jTextAreaAutores.setText(String.join("\n", objArticulo.getAutores()));
         this.jTextFieldRevista.setText(objArticulo.getRevista());
     }
@@ -199,21 +199,20 @@ public class VtnActualizarArticulo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-        String titulo, autores, id;        
+        String nombre, autores, id;        
         boolean bandera;
         int idArticulo;
         id=this.jTextFieldId.getText();  
         
         idArticulo=Integer.parseInt(id);
-        titulo=this.jTextFieldTitulo.getText();
+        nombre=this.jTextFieldTitulo.getText();
         autores=this.jTextAreaAutores.getText();
         
         
         Articulo objArticulo= new Articulo();
         objArticulo.setId(idArticulo);
-        objArticulo.setTitulo(titulo);
+        objArticulo.setNombre(nombre);
         objArticulo.setAutores(autores.split("\\r?\\n"));
-        
         Articulo articuloActualizado=this.objServicio1.actualizarArticulo(objArticulo.getId(),objArticulo);
         bandera = articuloActualizado!=null;
        if(bandera==true)

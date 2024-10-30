@@ -14,9 +14,9 @@ public interface IArticleService {
 
 	public ArticleDTO findById(Integer id);
 
-	public ArticleDTO save(ArticleDTO cliente);
+	public ArticleDTO save(ArticleDTO articulo);
 
-	public ArticleDTO update(Integer id, ArticleDTO cliente);
+	public ArticleDTO update(Integer id, ArticleDTO articulo);
 
 	public boolean delete(Integer id);
 

@@ -66,12 +66,14 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame implements Ob
         JButtonActualizarArticulo.setName("Actualizar");
         JButtonActualizarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/aplicar.png")));
 
-            
+ 
+        String autoresString;
         for (int i = 0; i < listaArticulos.size(); i++) {
+            autoresString = String.join(",",listaArticulos.get(i).getAutores());
             Object [] fila= { 
                 listaArticulos.get(i).getId(),
-                listaArticulos.get(i).getTitulo(),
-                listaArticulos.get(i).getAutores(),
+                listaArticulos.get(i).getNombre(),
+                autoresString,
                 listaArticulos.get(i).getCantAutores(),
                 listaArticulos.get(i).getRevista(),
                 JButtonEliminarArticulo,

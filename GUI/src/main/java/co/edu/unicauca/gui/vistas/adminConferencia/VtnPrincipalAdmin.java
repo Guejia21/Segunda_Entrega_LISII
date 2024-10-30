@@ -5,7 +5,7 @@ import co.edu.unicauca.gui.servicios.ArticuloServices;
 import co.edu.unicauca.gui.servicios.ConferenciaServices;
 import co.edu.unicauca.gui.vistas.articulos.VtnListarArticulos;
 import java.awt.Image;
-import javax.swing.ImageIcon;
+import javax.swing.ImageIcon; 
 import javax.swing.JFrame;
 
 public class VtnPrincipalAdmin extends javax.swing.JFrame {
@@ -81,7 +81,7 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButtonVerArticulosEnviados.setText("Ver articulos enviados");
+        jButtonVerArticulosEnviados.setText("Gestionar Artículos");
         jButtonVerArticulosEnviados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonVerArticulosEnviadosActionPerformed(evt);
@@ -136,9 +136,9 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
                 .addComponent(jLabelImagenOrganizacion)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSuperiorLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addContainerGap(75, Short.MAX_VALUE)
                 .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         jPanelSuperiorLayout.setVerticalGroup(
             jPanelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

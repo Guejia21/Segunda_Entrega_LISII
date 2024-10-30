@@ -46,9 +46,9 @@
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="19" max="32767" attributes="0"/>
+                  <EmptySpace pref="75" max="32767" attributes="0"/>
                   <Component id="jPanelMenu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="7" max="32767" attributes="0"/>
+                  <EmptySpace pref="63" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -123,7 +123,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButtonVerArticulosEnviados">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Ver articulos enviados"/>
+                <Property name="text" type="java.lang.String" value="Gestionar Art&#xed;culos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonVerArticulosEnviadosActionPerformed"/>

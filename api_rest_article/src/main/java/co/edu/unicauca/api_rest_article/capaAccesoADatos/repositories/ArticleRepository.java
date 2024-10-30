@@ -71,7 +71,7 @@ public class ArticleRepository {
             return oldId; 
         }
         else{
-            return newId;   
+            return newId;    
         } 
     }
     public boolean delete(Integer id) {
