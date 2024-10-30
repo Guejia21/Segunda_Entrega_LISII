@@ -1,3 +1,6 @@
+/**
+ * Sujeto del patron Observer
+ */
 package co.edu.unicauca.gui.infraestructura;
 
 import java.util.ArrayList;
@@ -13,7 +16,7 @@ public abstract class Subject {
     /**
      * Agrega un observador
      *
-     * @param obs
+     * @param obs observador
      */
     public void addObserver(Observer obs) {
         if (observers == null) {

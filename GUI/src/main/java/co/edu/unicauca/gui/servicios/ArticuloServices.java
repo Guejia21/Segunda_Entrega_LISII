@@ -1,6 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * Clase que se encarga de realizar peticiones al servicio web de Articulos
  */
 package co.edu.unicauca.gui.servicios;
 
@@ -22,12 +21,17 @@ import org.glassfish.jersey.jackson.JacksonFeature;
  * @author david
  */
 public class ArticuloServices extends Subject{
-    private String endPoint; //ruta al servicio web, puerto:8000
-    private Client objClientePeticiones;
+    private String endPoint; /*Ruta al servicio web*/
+    private Client objClientePeticiones; /*Cliente para realizar peticiones al servicio web*/
     public ArticuloServices(){
         this.endPoint = "http://localhost:8000/api/articles";
         this.objClientePeticiones = ClientBuilder.newClient().register(new JacksonFeature());
     }
+    /**
+     * Metodo que se encarga de almacenar un articulo en la base de datos
+     * @param objArticuloRegistrar Objeto de tipo Articulo que se desea almacenar
+     * @return Objeto de tipo Articulo que se almaceno en la base de datos
+     */
     public Articulo almacenarArticulo(Articulo objArticuloRegistrar){
         Articulo art;
         WebTarget target = this.objClientePeticiones.target(this.endPoint);
@@ -37,13 +41,22 @@ public class ArticuloServices extends Subject{
         notifyAllObserves();
         return art;        
     }
+    /**
+     * Metodo que se encarga de listar todos los articulos almacenados en la base de datos
+     * @return Lista de objetos de tipo Articulo
+     */
     public List<Articulo> listarArticulos(){
-       List<Articulo> articulos;
+        List<Articulo> articulos;
         WebTarget target = this.objClientePeticiones.target(this.endPoint+"/list");
         Invocation.Builder objPeticion = target.request(MediaType.APPLICATION_JSON);
         articulos = objPeticion.get(new GenericType<List<Articulo>>(){});
         return articulos;
     }
+    /**
+     * Metodo que se encarga de eliminar un articulo de la base de datos
+     * @param idArticulo Identificador del articulo que se desea eliminar
+     * @return True si se elimino el articulo, False en caso contrario
+     */
     public boolean eliminarArticulo(int idArticulo){
         Boolean bandera;
         WebTarget target = this.objClientePeticiones.target(this.endPoint+"/"+idArticulo);
@@ -52,6 +65,11 @@ public class ArticuloServices extends Subject{
         notifyAllObserves();
         return bandera;
     }
+    /**
+     * Metodo que se encarga de consultar un articulo de la base de datos
+     * @param idArticulo Identificador del articulo que se desea consultar
+     * @return Objeto de tipo Articulo
+     */
     public Articulo consultarArticulo(int idArticulo){
         Articulo art;
         WebTarget target = this.objClientePeticiones.target(this.endPoint+"/"+idArticulo);      
@@ -59,6 +77,12 @@ public class ArticuloServices extends Subject{
         art = objPeticion.get(Articulo.class);      
         return art;        
     }
+    /**
+     * Metodo que se encarga de actualizar un articulo de la base de datos
+     * @param idArticulo Identificador del articulo que se desea actualizar
+     * @param artActualizado Objeto de tipo Articulo con los datos actualizados
+     * @return Objeto de tipo Articulo con los datos actualizados
+     */
     public Articulo actualizarArticulo(int idArticulo,Articulo artActualizado){
         Articulo art;
         WebTarget target = this.objClientePeticiones.target(this.endPoint+"/"+idArticulo);

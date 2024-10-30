@@ -1,3 +1,11 @@
+/**
+ * Clase que representa la implementación de la interfaz conferencia.
+ * @author David Chacón <jhoanchacon@unicauca.edu.co>
+ * @author Jonathan Guejia <jonathanguejia@unicauca.edu.co>
+ * @version 1.0
+ * @since 2024
+ */
+
 package co.edu.unicauca.api_rest_conference.fachadaServices.services;
 
 import java.util.List;
@@ -14,10 +22,12 @@ import org.springframework.stereotype.Service;
 public class ConferenceServiceImp implements IConferenceService{
     private ConferenceRepository servicioAccesoBaseDatos;
     private ModelMapper modelMapper;
+
     public ConferenceServiceImp(ConferenceRepository servicioBaseDatos, ModelMapper modelMapper) {
         this.servicioAccesoBaseDatos = servicioBaseDatos;
         this.modelMapper = modelMapper;
     }
+
     @Override
     public List<ConferenceDTO> findAll() {
         List<ConferenceEntity> conferencias = servicioAccesoBaseDatos.findAll();
@@ -51,6 +61,7 @@ public class ConferenceServiceImp implements IConferenceService{
         ConferenceDTO conferenceDTO = this.modelMapper.map(objConferenceEntitySaved, ConferenceDTO.class);
         return conferenceDTO;
     }
+
     @Override
     public int countArticlesInConference(Integer id) {
         return this.servicioAccesoBaseDatos.countArticlesInConference(id);
@@ -65,6 +76,7 @@ public class ConferenceServiceImp implements IConferenceService{
     public boolean exists(int id) {
         return this.servicioAccesoBaseDatos.exists(id);
     }
+
     @Override
     public List<ConferenceDTO> getConferencesByArticle(int idArticle) {
         List<ConferenceEntity> conferencias = servicioAccesoBaseDatos.getConferencesByArticle(idArticle);
@@ -72,5 +84,4 @@ public class ConferenceServiceImp implements IConferenceService{
             }.getType());
         return conferenciasDTO;
     }
-
 }

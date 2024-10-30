@@ -9,8 +9,10 @@ import co.edu.unicauca.gui.servicios.ArticuloServices;
 import co.edu.unicauca.gui.servicios.ConferenciaServices;
 import co.edu.unicauca.gui.modelos.Articulo;
 import co.edu.unicauca.gui.utilidades.Utilidades;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.text.JTextComponent;
 
 /**
@@ -27,11 +29,19 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
         this.objServicio1=objServicio1;        
         this.campos = new ArrayList<>();
         cargarCampos();
+        establecerIconoAyuda();
     }
     private void cargarCampos() {
         campos.add(jTextFieldTitulo);
-        campos.add(jTextFieldRevista);
-        campos.add(jTextFieldTitulo);       
+        campos.add(jTextFieldRevista); 
+        campos.add(jTextAreaAutores);   
+    }
+    private void establecerIconoAyuda(){
+        Image img1= new ImageIcon(getClass().getResource("/recursos/info.png")).getImage();
+        ImageIcon img2=new ImageIcon(img1.getScaledInstance(40, 40, Image.SCALE_SMOOTH));
+        this.jLabelMensajeAutores.setIcon(img2);
+        this.jLabelMensajeAutores.setToolTipText("Por favor, separe cada autor por comas");
+        this.jLabelMensajeAutores.setText(" ");
     }
 
     /**
@@ -55,6 +65,7 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
         jButtonRegistrar = new javax.swing.JButton();
         jLabelRevista = new javax.swing.JLabel();
         jTextFieldRevista = new javax.swing.JTextField();
+        jLabelMensajeAutores = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,6 +126,8 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
 
         jLabelRevista.setText("Revista:");
 
+        jLabelMensajeAutores.setText("Icono");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -124,13 +137,17 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jLabelRevista))
+                    .addComponent(jLabelRevista, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldRevista)
                     .addComponent(jScrollPane1)
                     .addComponent(jTextFieldTitulo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelMensajeAutores)
+                .addContainerGap(80, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonRegistrar)
                 .addGap(32, 32, 32))
         );
@@ -147,18 +164,16 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addComponent(jLabelRevista)
-                        .addGap(53, 53, 53))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextFieldRevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelMensajeAutores)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldRevista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelRevista))
+                .addGap(28, 28, 28)
                 .addComponent(jButtonRegistrar)
-                .addContainerGap())
+                .addGap(36, 36, 36))
         );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.CENTER);
@@ -167,26 +182,33 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
-        String titulo, autores,revista;
+        String nombre, autores,revista;       
+        int cantAu;
         boolean bandera;
         
-        titulo=this.jTextFieldTitulo.getText();
+        nombre=this.jTextFieldTitulo.getText();
         autores=this.jTextAreaAutores.getText();
-        revista = this.jTextFieldRevista.getText();       
-        
+        revista = this.jTextFieldRevista.getText();         
+        if (!Utilidades.validarCampos(campos)) {
+            Utilidades.mensajeError("Por favor, llene todos los campos", "Registro fallido");
+            return;
+        }
         Articulo objArticulo= new Articulo();
-        objArticulo.setTitulo(titulo);
-        String autoresConvertidos[] = autores.split("\\r?\\n");
-        objArticulo.setAutores(autoresConvertidos); //Se deberia ingresar cada autor por linea en el jtextarea
-        objArticulo.setRevista(revista);        
-        
-        System.out.println("Articulo a guardar: "+objArticulo.getTitulo());
+        objArticulo.setNombre(nombre);
+        String autoresConvertidos[] = autores.split(","); //Para extraer la cantidad de autores
+        cantAu = autoresConvertidos.length;
+        objArticulo.setAutores(autores); //Se deberia ingresar cada autor por linea en el jtextarea
+        objArticulo.setRevista(revista); 
+        objArticulo.setCantAutores(cantAu);
+                 
         Articulo nuevoArticulo = this.objServicio1.almacenarArticulo(objArticulo);
+ 
         bandera = nuevoArticulo != null;
         
         if(bandera==true)
         {
             Utilidades.mensajeExito("Registro exitoso", "Registro exitoso");
+            Utilidades.limpiarCampos(campos);
         }
         else
         {
@@ -201,6 +223,7 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelMensajeAutores;
     private javax.swing.JLabel jLabelRevista;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

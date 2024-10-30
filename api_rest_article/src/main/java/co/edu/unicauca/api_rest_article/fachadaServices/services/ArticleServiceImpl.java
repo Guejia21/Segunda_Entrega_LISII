@@ -1,3 +1,11 @@
+/**
+ * Clase que representa la implementación de la interfaz de artículo. 
+ * @author David Chacón <jhoanchacon@unicauca.edu.co>
+ * @author Jonathan Guejia <jonathanguejia@unicauca.edu.co>
+ * @version 1.0
+ * @since 2024
+ */
+
 package co.edu.unicauca.api_rest_article.fachadaServices.services;
 
 import java.util.List;
@@ -30,7 +38,6 @@ public class ArticleServiceImpl implements IArticleService{
 
 	@Override
 	public List<ArticleDTO> findAll() {
-
 		List<ArticleEntity> articlesEntity = this.servicioAccesoBaseDatos.findAll();
 		List<ArticleDTO> articleDTO = this.modelMapper.map(articlesEntity, new TypeToken<List<ArticleDTO>>() {
 		}.getType());
@@ -82,7 +89,8 @@ public class ArticleServiceImpl implements IArticleService{
 	@Override
 	public ArticleWithConferencesDTO getArticleWithConferences(Integer idArticle) {
 		List<ConferenceDTO> conferences = this.servicioAccesoBaseDatosConferencia.getConferencesByArticle(idArticle);
-		ArticleDTO article = this.findById(idArticle);
+		ArticleEntity objArticleEntity = this.servicioAccesoBaseDatos.findById(idArticle);
+		ArticleDTO article = this.modelMapper.map(objArticleEntity, ArticleDTO.class);
 		ArticleWithConferencesDTO articleWithConferences = new ArticleWithConferencesDTO(article, conferences);
 		return articleWithConferences;
 	}

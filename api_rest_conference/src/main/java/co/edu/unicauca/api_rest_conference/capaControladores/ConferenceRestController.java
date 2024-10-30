@@ -1,3 +1,11 @@
+/**
+ * Clase que representa la definición de los servicios REST.
+ * @author David Chacón <jhoanchacon@unicauca.edu.co>
+ * @author Jonathan Guejia <jonathanguejia@unicauca.edu.co>
+ * @version 1.0
+ * @since 2024
+ */
+
 package co.edu.unicauca.api_rest_conference.capaControladores;
 
 import java.util.List;
@@ -23,25 +31,43 @@ public class ConferenceRestController {
     @Autowired
     private IConferenceService conferenceService;
 
-    //El primer servicio REST recibe una conferencia y la guarda en la base de datos. Retorna la conferencia guardada.
+    /**
+     * Permite crear una nueva conferencia
+     * @param conference nueva coferencia
+     * @return
+     */
     @PostMapping("/conferences")
 	public ConferenceDTO createConference(@RequestBody ConferenceDTO conference) {
 		ConferenceDTO objConference = conferenceService.save(conference);
 		return objConference;
 	}
-    //El segundo servicio REST recibe el ID de la conferencia y retorna la conferencia que corresponde con el ID.
+    
+    /**
+     * Permite obtener una conferencia por su id
+     * @param id id de conferencia
+     * @return
+     */
     @GetMapping("/conferences/{id}")
     public ConferenceDTO getConferenceById(@PathVariable Integer id) {
         ConferenceDTO conf = conferenceService.findById(id);
         return conf;
     }
-    //El tercer servicio REST no recibe datos y retorna una lista de las conferencias guardadas.
+    
+    /**
+     * Permite listar todas las conferencias almacenadas
+     * @return
+     */
     @GetMapping("/conferences/list")
     public List<ConferenceDTO> listConferences() {
         return conferenceService.findAll();
     }
-    //El cuarto servicio REST recibe el ID de la conferencia a actualizar y los nuevos datos de ella , y retorna la
-    //conferencia actualizada
+    
+    /**
+     * Permite actualizar una conferencia
+     * @param id id de conferencia
+     * @param newConference nueva conferencia
+     * @return
+     */
     @PutMapping("/conferences/{id}")
     public ConferenceDTO updateConference(@PathVariable Integer id, @RequestBody ConferenceDTO newConference) {
         ConferenceDTO oldConference = conferenceService.findById(id);
@@ -51,13 +77,22 @@ public class ConferenceRestController {
         }
         return updatedConference;
     }
-    //El quinto servicio REST recibe el ID de la conferencia y retorna la cantidad de artículos que tiene asociados.
+    
+    /**
+     * Permite obtener la cantidad de articulos de una conferencia
+     * @param id id de conferencia
+     * @return
+     */
     @GetMapping("conferences/countArticles/{id}")
     public int countArticlesInConference(@PathVariable Integer id) {
         return this.conferenceService.countArticlesInConference(id);
     }
     
-    //El sexto servicio REST recibe el ID de la conferencia a eliminar y retorna true o false si se eliminó.
+    /**
+     * Permite borrar una conferencia
+     * @param id id de conferencia
+     * @return
+     */
     @DeleteMapping("/conferences/{id}")
     public boolean deleteConference(@PathVariable Integer id){
         boolean bandera = false;
@@ -65,15 +100,27 @@ public class ConferenceRestController {
         if(conf!=null) bandera = conferenceService.delete(id);
         return bandera;
     }
-    // El septimo servicio REST recibe el ID de la conferencia a consultar y retorna true o false si existe.     
+    
+    /**
+     * Verifica la existencia de una conferencia
+     * @param id id de una conferencia
+     * @return
+     */     
     @GetMapping("/conferences/exists")
     public boolean verifyExistenceConference(@RequestParam Integer id) {
         return conferenceService.exists(id);
     }
+
+    /**
+     * Permite obtener las conferencias a las cuales esta registrado un artículo (comunicación sícrona)
+     * @param idArticle id del artículo
+     * @return
+     */
     @GetMapping("/conferences/article/{idArticle}")
     public List<ConferenceDTO> getConferencesByArticle(@PathVariable Integer idArticle) {
         System.out.println("Getting conferences by article with id: "+idArticle);
         return conferenceService.getConferencesByArticle(idArticle);
     }
+    
     
 }

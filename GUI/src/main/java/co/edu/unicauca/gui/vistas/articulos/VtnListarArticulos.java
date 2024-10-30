@@ -27,6 +27,7 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame implements Ob
         objVtnActualizarArticulo= new VtnActualizarArticulo(this.objServicioArticulos, this.objServicioConferencias);
         objVtnActualizarArticulo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         inicializarTabla();
+        llenarTabla();
     }
 
      private void inicializarTabla()
@@ -66,12 +67,14 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame implements Ob
         JButtonActualizarArticulo.setName("Actualizar");
         JButtonActualizarArticulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/aplicar.png")));
 
-            
+ 
+        String autoresString;
         for (int i = 0; i < listaArticulos.size(); i++) {
+            autoresString = String.join(",",listaArticulos.get(i).getAutores());
             Object [] fila= { 
                 listaArticulos.get(i).getId(),
-                listaArticulos.get(i).getTitulo(),
-                listaArticulos.get(i).getAutores(),
+                listaArticulos.get(i).getNombre(),
+                autoresString,
                 listaArticulos.get(i).getCantAutores(),
                 listaArticulos.get(i).getRevista(),
                 JButtonEliminarArticulo,
@@ -96,7 +99,6 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame implements Ob
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableListarArticulos = new javax.swing.JTable();
         jButtonRegistrar = new javax.swing.JButton();
-        jButtonActalizar = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -159,17 +161,11 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame implements Ob
         });
         jScrollPane1.setViewportView(jTableListarArticulos);
 
-        jButtonRegistrar.setText("Registrar");
+        jButtonRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/recursos/agregar.png"))); // NOI18N
+        jButtonRegistrar.setText("Registrar articulo");
         jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonRegistrarActionPerformed(evt);
-            }
-        });
-
-        jButtonActalizar.setText("Actualizar");
-        jButtonActalizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonActalizarActionPerformed(evt);
             }
         });
 
@@ -178,25 +174,21 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame implements Ob
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(74, 74, 74)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(jButtonActalizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(198, 198, 198)
                         .addComponent(jButtonRegistrar)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRegistrar)
-                    .addComponent(jButtonActalizar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jButtonRegistrar)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -205,10 +197,6 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame implements Ob
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonActalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActalizarActionPerformed
-       llenarTabla();
-    }//GEN-LAST:event_jButtonActalizarActionPerformed
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         objVtnRegistrarArticulo.setVisible(true);
@@ -262,7 +250,6 @@ public class VtnListarArticulos extends javax.swing.JInternalFrame implements Ob
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonActalizar;
     private javax.swing.JButton jButtonRegistrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
